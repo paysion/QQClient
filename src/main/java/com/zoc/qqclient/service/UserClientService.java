@@ -77,6 +77,23 @@ public class UserClientService {
 
     }
 
+    // 编写方法，退出客户端，并给服务端发送一个退出系统的message对象
     public void logout() {
+        Message message = new Message();
+        message.setMesType(MessageType.MESSAGE_CLIENT_EXIT);
+        // 一定要指定我是哪个客户端id
+        message.setSender(user.getUserId());
+
+        // 发送message
+        try {
+            // 从HashMap线程集合取到对应userId对应的线程
+            ObjectOutputStream oos = new ObjectOutputStream(ManageClientConnectServerThread.getClientConnectServerThread(user.getUserId()).getSocket().getOutputStream());
+            oos.writeObject(message);
+            System.out.println(user.getUserId() + " 退出系统 ");
+            // 结束进程
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
