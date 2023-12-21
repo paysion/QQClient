@@ -35,3 +35,4 @@ build/
 
 # Node.js 的依赖目录
 node_modules/
+/.idea/
