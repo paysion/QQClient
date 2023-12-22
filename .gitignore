@@ -13,11 +13,6 @@
 *.tar.gz
 *.rar
 
-# IntelliJ IDEA 项目文件
-.idea  # IDEA 项目配置目录
-*.iml  # IDEA 模块文件
-*.iws  # IDEA 工作空间文件
-
 # Maven 构建目录
 target/  # Maven 构建输出目录
 pom.xml.tag
@@ -35,4 +30,9 @@ build/
 
 # Node.js 的依赖目录
 node_modules/
+/QQClient.iml
+
+# IntelliJ IDEA 项目文件
 /.idea/
+*.iml  # IDEA 模块文件
+*.iws  # IDEA 工作空间文件

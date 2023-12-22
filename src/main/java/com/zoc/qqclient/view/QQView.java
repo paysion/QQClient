@@ -10,7 +10,6 @@ import com.zoc.qqclient.utils.Utility;
  */
 @SuppressWarnings("all")
 public class QQView {
-
     private boolean loop = true; //控制是否显示菜单
     private String key = ""; // 接收用户的键盘输入
     private UserClientService userClientService = new UserClientService();//对象是用于登录服务/注册用户

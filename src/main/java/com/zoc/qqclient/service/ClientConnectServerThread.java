@@ -32,7 +32,9 @@ public class ClientConnectServerThread extends Thread{
                         System.out.println("用户: " + onlineUsers[i]);
                     }
                 } else if (message.getMesType().equals(MessageType.MESSAGE_COMM_MES)) { //普通的聊天消息
-
+                    System.out.println(message.getSender() + " 对 " + message.getGetter() + " 说： " + message.getContent());
+                }else if (message.getMesType().equals(MessageType.MESSAGE_TO_ALL_MES)) { //群聊消息
+                    System.out.println(message.getSender() + " 对 "  + " 大家说： " + message.getContent());
                 } else {
                     System.out.println("是其他类型的message, 暂时不处理....");
                 }
