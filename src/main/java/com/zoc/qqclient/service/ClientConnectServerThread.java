@@ -3,6 +3,8 @@ package com.zoc.qqclient.service;
 import com.zoc.qqcommon.Message;
 import com.zoc.qqcommon.MessageType;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -33,8 +35,15 @@ public class ClientConnectServerThread extends Thread{
                     }
                 } else if (message.getMesType().equals(MessageType.MESSAGE_COMM_MES)) { //普通的聊天消息
                     System.out.println(message.getSender() + " 对 " + message.getGetter() + " 说： " + message.getContent());
-                }else if (message.getMesType().equals(MessageType.MESSAGE_TO_ALL_MES)) { //群聊消息
+                } else if (message.getMesType().equals(MessageType.MESSAGE_TO_ALL_MES)) { //群聊消息
                     System.out.println(message.getSender() + " 对 "  + " 大家说： " + message.getContent());
+                } else if (message.getMesType().equals(MessageType.MESSAGE_FILE_MES)) {
+                    System.out.println("\n" + message.getSender() + " 给 " + message.getGetter() + " 发文件: " + message.getSrc() + " 到我的电脑的目录 " + message.getDest());
+
+                    FileOutputStream fileOutputStream = new FileOutputStream(message.getDest(), true);
+                    fileOutputStream.write(message.getFileBytes());
+                    fileOutputStream.close();
+                    System.out.println("保存文件成功~");
                 } else {
                     System.out.println("是其他类型的message, 暂时不处理....");
                 }
